@@ -1,35 +1,81 @@
 #pragma once
+#include "bimap_first.h"
+#include "bimap_second.h"
 
-template<typename Tkey, typename Tval>
-class Bimap //final
+#include <set>
+#include <map>
+
+namespace container
 {
-public:
-	std::size_t size() const;
-	bool isEmpty() const;
+	//класс bimap реализует двунаправленный map
+	//bimap родительский класс для bimap_first и bimap_second - разные реализации
+	//принимает: Tkey - ключ и Tval - занчение
+	template<typename Tkey, typename Tval>
+	class bimap //final
+	{
+	public:
+		//возвращаем количество элементов
+		std::size_t size() const;
+		//Проверка на пустоту множества
+		bool isEmpty() const;
 
-	bool checkKey(const Tkey& key) const;
-	bool checkVal(const Tval& val) const;
+		bool checkKey(const Tkey& key) const;
+		bool checkVal(const Tval& val) const;
 
-	bool insert(const Tkey& key, const Tval& val);
-	bool emplace(Tkey&& key, Tval&& val);
+		bool insert(const Tkey& key, const Tval& val);
+		bool emplace(Tkey&& key, Tval&& val);
 
-	void keyErase(const Tkey& key);
-	void valErase(const Tval& val);
+		void keyErase(const Tkey& key);
+		void valErase(const Tval& val);
 
-	//std::pair<std::reference_wrapper<Tkey>, std::reference_wrapper<Tval>> keyGet(const Tkey& key) const;
-	//std::pair<std::reference_wrapper<Tkey>, std::reference_wrapper<Tval>> valGet(const Tval& val) const;
+		//std::pair<std::reference_wrapper<Tkey>, std::reference_wrapper<Tval>> keyGet(const Tkey& key) const;
+		//std::pair<std::reference_wrapper<Tkey>, std::reference_wrapper<Tval>> valGet(const Tval& val) const;
 
-	using RefPair = std::pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>;
+		using RefPair = std::pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>;
 
-	RefPair keyGet(const Tkey& key) const;
-	RefPair valGet(const Tval& val) const;
+		RefPair keyGet(const Tkey& key) const;
+		RefPair valGet(const Tval& val) const;
 
-	Bimap() {
+		bimap() {
+			kol_of_elem = 0;
+		}
 
-	}
+		bimap(size_t max_size_of_ring_) {
+			kol_of_elem = 0;
+			max_size_of_ring = max_size_of_ring_;
+			isRingBimap = true;
+		}
 
-	~Bimap() {
+		~bimap() {
+			kol_of_elem = 0;
+			max_size_of_ring = 0;
+			isRingBimap = false;
+		}
 
-	}
+
+		
+		std::size_t size() const final
+		{
+			return kol_of_elem;
+		}
+
+		bool isEmpty() const final
+		{
+			return size() == 0;
+		}
+
+
+
+
+	private:
+		std::size_t kol_of_elem = 0;
+		std::size_t max_size_of_ring;
+		bool isRingBimap = 0;
+	};
+
+
+		
 
 };
+
+

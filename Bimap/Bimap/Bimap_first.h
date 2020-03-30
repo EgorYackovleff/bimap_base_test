@@ -1,15 +1,14 @@
 #pragma once
-//#include "bimap.h"
+#include "bimap.h"
+
 
 namespace container
 {
 
 	template<typename Tkey, typename Tval>
-	class Bimap_first : public bimap
+	class bimap_first : public bimap<Tkey, Tval>
 	{
-	
+
 	};
 
 }
-
-

@@ -1,6 +1,5 @@
 #pragma once
-#include "bimap_first.h"
-#include "bimap_second.h"
+
 
 #include <set>
 #include <map>
@@ -14,11 +13,7 @@ namespace container
 	class bimap //final
 	{
 	public:
-		//возвращаем количество элементов
-		std::size_t size() const;
-		//Проверка на пустоту множества
-		bool isEmpty() const;
-
+		
 		bool checkKey(const Tkey& key) const;
 		bool checkVal(const Tval& val) const;
 
@@ -53,12 +48,13 @@ namespace container
 		}
 
 
-		
+		//возвращаем количество элементов
 		std::size_t size() const final
 		{
 			return kol_of_elem;
 		}
 
+		//Проверка на пустоту множества
 		bool isEmpty() const final
 		{
 			return size() == 0;
@@ -74,8 +70,15 @@ namespace container
 	};
 
 
-		
+	
+
+	
+
 
 };
+
+
+#include "bimap_first.h"
+#include "bimap_second.h"
 
 

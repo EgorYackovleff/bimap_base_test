@@ -29,6 +29,21 @@ namespace container
 	class bimap_second : public bimap<Tkey, Tval>
 	{
 	public:
+
+		//возвращаем количество элементов
+		std::size_t size() const
+		{
+			return kol_of_elem;
+		}
+
+		//Проверка на пустоту множества
+		bool isEmpty() const
+		{
+			return size() == 0;
+		}
+
+
+
 		bimap_second()
 		{
 			
@@ -84,9 +99,7 @@ namespace container
 				bimap_2x.map_Key_Val.erase(bimap_2x.map_Val_Key[val]);
 				bimap_2x.map_Val_Key.erase(val);
 				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem--
-				max_size_of_deque = 2;
-
-			}
+				}
 		}
 
 

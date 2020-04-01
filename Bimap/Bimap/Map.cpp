@@ -8,7 +8,7 @@ int main()
 {
 
 
-    //std::map <int, std::string, std::less<int>, std::allocator<
+    
 
    
    
@@ -19,11 +19,47 @@ int main()
 
         bimap_second<int, string> b;
         cout << b.isEmpty() << endl;
-        b.emplace(1, "ìàìà");
-       // a.checkKey(0);
-        cout << "vfvf";
-        //cout << bimap2x.isEmpty();
-        //bimap2x.insert(1, "ìàìà");
-        //bimap2x.emplace(1, "ïàïà");
+        int k, p;
+        string v;
+
+
+        b.emplace(1, "mom");
+        b.emplace(2, "dad");
+        b.emplace(3, "dog");
+        while (true)
+        {
+            cin >> p;
+            switch (p)
+            {
+            case 1: { cin >> k >> v; b.insert(k, v); break; } //insert
+
+
+            case 2: {cin >> k >> v;  b.emplace(std::move(k), std::move(v)); break; } //emplace
+
+            case 3: {cin >> k; auto a = b.keyGet(k);  cout << "{ " << a.first << " ; " << a.second.get() << " }" ; break; }
+
+            case 4: {cin >> v; auto a = b.valGet(v);  cout << "{ " << a.first << " ; "  << a.second.get() << " }";  break; }
+
+            case 5: {cin >> k; b.keyErase(k); break; }
+
+            case 6: {cin >> v; b.valErase(v); break; }
+
+            default: break;
+            }
+
+
+
+
+
+            cout << "size = " << b.size() << endl;
+
+        }
+
+        
+
+        
+        
+        
+        
     }
 }

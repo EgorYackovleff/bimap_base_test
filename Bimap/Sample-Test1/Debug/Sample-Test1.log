@@ -1,1 +1,4 @@
-﻿  Sample-Test1.vcxproj -> C:\Users\Egory\source\repos\bimap_base_test\Bimap\Debug\Sample-Test1.exe
+﻿  pch.cpp
+  test.cpp
+test.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: bool __thiscall container::bimap<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int>::insert(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int const &)" (?insert@?$bimap@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@container@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABH@Z) в функции "private: virtual void __thiscall Bimap_add_values_Test::TestBody(void)" (?TestBody@Bimap_add_values_Test@@EAEXXZ)
+C:\Users\Egory\source\repos\bimap_base_test\Bimap\Debug\Sample-Test1.exe : fatal error LNK1120: неразрешенных внешних элементов: 1

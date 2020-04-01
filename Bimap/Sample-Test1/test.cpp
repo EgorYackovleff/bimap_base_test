@@ -8,20 +8,18 @@ TEST(TestCaseName, TestName) {
   EXPECT_TRUE(true);
 }
 
-
-/*
 TEST(Bimap, add_values)
 {
     container::bimap<std::string, int> bimap;
     EXPECT_TRUE(bimap.isEmpty());
 
-    for(auto ind = 0; ind < cycles_count; ++ind) {
+    for (auto ind = 0; ind < cycles_count; ++ind) {
         const bool res = bimap.insert(std::to_string(ind), ind);
         EXPECT_TRUE(res);
     }
     EXPECT_EQ(cycles_count, bimap.size());
 
-    for(auto ind = 0; ind < cycles_count; ++ind) {
+    for (auto ind = 0; ind < cycles_count; ++ind) {
         const bool res = bimap.insert(std::to_string(ind), ind);
         EXPECT_FALSE(res);
     }
@@ -29,6 +27,10 @@ TEST(Bimap, add_values)
 
     EXPECT_FALSE(bimap.isEmpty());
 }
+
+
+/*
+
 
 TEST(Bimap, add_and_erase_by_key)
 {
@@ -183,7 +185,7 @@ TEST(Bimap, compare_ret_data_by_val)
 
 int main(int argc, char** argv)
 {
-    //::testing::InitGoogleTest(&argc, argv);
+   // ::testing::InitGoogleTest(&argc, argv);
     RUN_ALL_TESTS();
 
 

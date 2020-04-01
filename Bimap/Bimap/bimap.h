@@ -42,13 +42,13 @@ namespace container
 
 		bimap(size_t max_size_of_ring_) {
 			kol_of_elem = 0;
-			max_size_of_ring = max_size_of_ring_;
+			max_size_of_deque = max_size_of_ring_;
 			isRingBimap = true;
 		}
 
 		~bimap() {
 			kol_of_elem = 0;
-			max_size_of_ring = 0;
+			max_size_of_deque = 0;
 			isRingBimap = false;
 		}
 
@@ -68,17 +68,17 @@ namespace container
 		
 
 
-	private:
+	protected:
 		std::size_t kol_of_elem = 0;
-		std::size_t max_size_of_ring;
+		std::size_t max_size_of_deque;
 		bool isRingBimap = 0;
-
+		
 
 
 	};
 
 	
-
+	
 
 };
 

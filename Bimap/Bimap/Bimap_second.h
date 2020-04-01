@@ -5,6 +5,15 @@
 
 namespace container
 {
+	
+
+	
+
+	
+
+
+
+
 
 	template<typename Tkey, typename Tval>
 	struct Bimap_2X
@@ -41,8 +50,8 @@ namespace container
 		bool insert(const Tkey& key, const Tval& val)
 		{
 			if (checkKey(key) == 0) {
-				bimap_2x.map_Key_Val.insert(key, val);
-				bimap_2x.map_Val_Key.insert(val, key);
+				bimap_2x.map_Key_Val.insert(std::pair<Tkey, Tval> (key, val));
+				bimap_2x.map_Val_Key.insert(std::pair<Tval, Tkey>(val, key));
 				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem++
 				return true;
 			}
@@ -75,29 +84,32 @@ namespace container
 				bimap_2x.map_Key_Val.erase(bimap_2x.map_Val_Key[val]);
 				bimap_2x.map_Val_Key.erase(val);
 				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem--
+				max_size_of_deque = 2;
+
 			}
 		}
 
 
 		using RefPair = std::pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>;
 
-		RefPair keyGet(const Tkey& key) const
+		RefPair keyGet(const Tkey& key) 
 		{
 
 			if (checkKey(key) != 0) {
-
-				return std::make_pair(std::reference_wrapper<const Tkey>(key), std::reference_wrapper<const Tval>(bimap_2x.map_Key_Val[key]));
-
+				
+				return std::make_pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>(bimap_2x.map_Key_Val.find(key)->first, bimap_2x.map_Key_Val[key]);
 			}
 
 		}
 
+		
 
 
-		RefPair valGet(const Tval& val) const
+		RefPair valGet(const Tval& val)
 		{
 			if (checkVal(val) != 0) {
-				return std::make_pair(std::reference_wrapper<const Tkey>(bimap_2x.map_Val_Key[val]), std::reference_wrapper<const Tval>(val));
+				auto a = std::make_pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>(bimap_2x.map_Val_Key[val], bimap_2x.map_Val_Key.find(val)->first);
+				return a;
 			}
 		}
 
@@ -106,10 +118,10 @@ namespace container
 	private:
 
 		Bimap_2X<Tkey, Tval> bimap_2x;
-		
 		std::size_t kol_of_elem = 0;
-		std::size_t max_size_of_ring;
+		std::size_t max_size_of_deque;
 		bool isRingBimap = 0;
+		
 	
 	};
 

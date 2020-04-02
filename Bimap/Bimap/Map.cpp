@@ -18,6 +18,19 @@ int main()
         
 
         bimap_second<int, string> b;
+        bimap_first<int, string> b1;
+
+
+        b1.emplace(5, "SnopDpg");
+        b1.emplace(4, "Mama");
+        b1.emplace(6, "Dad");
+
+        b1.insert(7, "snopDpg");
+        b1.insert(1, "mama");
+        b1.insert(11, "dad");
+
+
+
         cout << b.isEmpty() << endl;
         int k, p;
         string v;

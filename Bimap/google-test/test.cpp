@@ -3,10 +3,10 @@
 
 constexpr auto cycles_count = 1000;
 
-TEST(TestCaseName, TestName) {
-    EXPECT_EQ(1, 1);
-    EXPECT_TRUE(true);
-}
+//TEST(TestCaseName, TestName) {
+//    EXPECT_EQ(1, 1);
+//    EXPECT_TRUE(true);
+//}
 
 TEST(Bimap, add_values)
 {
@@ -185,7 +185,7 @@ TEST(Bimap, compare_ret_data_by_val)
 
 int main(int argc, char** argv)
 {
-    // ::testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleTest(&argc, argv);
     RUN_ALL_TESTS();
 
 

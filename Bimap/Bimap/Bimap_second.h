@@ -5,14 +5,6 @@
 
 namespace container
 {
-	
-
-	
-
-	
-
-
-
 
 
 	template<typename Tkey, typename Tval>
@@ -30,10 +22,13 @@ namespace container
 	{
 	public:
 
+		using Base = bimap<Tkey, Tval>;
+
+
 		//возвращаем количество элементов
 		std::size_t size() const
 		{
-			return kol_of_elem;
+			return Base::kol_of_elem;
 		}
 
 		//Проверка на пустоту множества
@@ -46,10 +41,8 @@ namespace container
 
 		bimap_second()
 		{
-			
-			//kol = 0;
-			kol_of_elem = 0;
-			isRingBimap = false;
+			Base::kol_of_elem = 0;
+			Base::isRingBimap = false;
 		}
 
 		bool checkKey(const Tkey& key) const
@@ -64,10 +57,10 @@ namespace container
 
 		bool insert(const Tkey& key, const Tval& val)
 		{
-			if (checkKey(key) == 0) {
+			if (checkKey(key) == 0 && checkVal(val) == 0) {
 				bimap_2x.map_Key_Val.insert(std::pair<Tkey, Tval> (key, val));
 				bimap_2x.map_Val_Key.insert(std::pair<Tval, Tkey>(val, key));
-				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem++
+				Base::kol_of_elem++ ; //kbimap_2x.map_Key_Val.size()
 				return true;
 			}
 			else return false;
@@ -75,10 +68,10 @@ namespace container
 
 		bool emplace(Tkey&& key, Tval&& val)
 		{
-			if (checkKey(key) == 0) {
+			if (checkKey(key) == 0 && checkVal(val) == 0) {
 				bimap_2x.map_Key_Val.emplace(key, val);
 				bimap_2x.map_Val_Key.emplace(val, key);
-				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem++
+				Base::kol_of_elem++; //kbimap_2x.map_Key_Val.size()
 				return true;
 			}
 			else return false;
@@ -89,7 +82,11 @@ namespace container
 			if (checkKey(key) != 0) {
 				bimap_2x.map_Val_Key.erase(bimap_2x.map_Key_Val[key]);
 				bimap_2x.map_Key_Val.erase(key);
-				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem--
+				Base::kol_of_elem--; //kbimap_2x.map_Key_Val.size()
+			}
+			else
+			{
+				throw std::bad_alloc();
 			}
 		}
 
@@ -98,8 +95,12 @@ namespace container
 			if (checkVal(val) != 0) {
 				bimap_2x.map_Key_Val.erase(bimap_2x.map_Val_Key[val]);
 				bimap_2x.map_Val_Key.erase(val);
-				kol_of_elem = bimap_2x.map_Key_Val.size(); //kol_of_elem--
+				Base::kol_of_elem--; //kbimap_2x.map_Key_Val.size()
 				}
+			else
+			{
+				throw std::bad_alloc();
+			}
 		}
 
 
@@ -111,6 +112,10 @@ namespace container
 			if (checkKey(key) != 0) {
 				
 				return std::make_pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>(bimap_2x.map_Key_Val.find(key)->first, bimap_2x.map_Key_Val[key]);
+			}
+			else
+			{
+				throw std::bad_alloc();
 			}
 
 		}
@@ -124,6 +129,10 @@ namespace container
 				auto a = std::make_pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>(bimap_2x.map_Val_Key[val], bimap_2x.map_Val_Key.find(val)->first);
 				return a;
 			}
+			else
+			{
+				throw std::bad_alloc();
+			}
 		}
 
 
@@ -131,9 +140,6 @@ namespace container
 	private:
 
 		Bimap_2X<Tkey, Tval> bimap_2x;
-		std::size_t kol_of_elem = 0;
-		std::size_t max_size_of_deque;
-		bool isRingBimap = 0;
 		
 	
 	};

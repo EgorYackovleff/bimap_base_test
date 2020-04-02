@@ -11,7 +11,7 @@ namespace container
 
 	
 	
-
+	
 
 	//класс bimap реализует двунаправленный map
 	//bimap родительский класс для bimap_first и bimap_second - разные реализации
@@ -77,7 +77,6 @@ namespace container
 
 	};
 
-	
 	
 
 };

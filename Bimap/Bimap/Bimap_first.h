@@ -17,10 +17,7 @@ namespace container
 	struct set_map
 	{
 		std::map <Tkey, Tval> map_Key_Val;
-
 		std::set<typename std::map<Tkey, Tval>::const_iterator, cmp_less<Tkey, Tval>> set_bimap;
-		
-		//std::set < std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<int const, std::string>>>>> set_bimap;
 		
 		set_map() {}
 		~set_map() {}
@@ -48,7 +45,7 @@ namespace container
 				{
 					centr = (left + right) / 2;
 
-
+					//it_ +=û + 1; // ךאך סהוכאüב?
 					for (int_iter; int_iter < centr; int_iter++) it_++;
 					for (int_iter; int_iter > centr; int_iter--) it_--;
 
@@ -144,32 +141,40 @@ namespace container
 			}
 			else return false;
 		}
-		/*
-		void keyErase(const Tkey& key)
+		
+		void keyErase(const Tkey& key) //const
 		{
 			if (checkKey(key) != 0) {
-				bimap_2x.map_Val_Key.erase(bimap_2x.map_Key_Val[key]);
-				bimap_2x.map_Key_Val.erase(key);
-				Base::kol_of_elem--; //kbimap_2x.map_Key_Val.size()
+				Tval val = Set_map.map_Key_Val[key];
+				
+				Set_map.set_bimap.erase(find_val_iter(val));
+
+				Set_map.map_Key_Val.erase(Set_map.map_Key_Val.find(key));
+				Base::kol_of_elem--; 
 			}
 			else
 			{
 				throw std::bad_alloc();
 			}
 		}
-
+		
 		void valErase(const Tval& val)
 		{
 			if (checkVal(val) != 0) {
-				bimap_2x.map_Key_Val.erase(bimap_2x.map_Val_Key[val]);
-				bimap_2x.map_Val_Key.erase(val);
-				Base::kol_of_elem--; //kbimap_2x.map_Key_Val.size()
+				auto iter_to_val = find_val_iter(val);
+				auto pair_ = **iter_to_val;
+				auto key = pair_.first;
+				Set_map.set_bimap.erase(iter_to_val);
+				Set_map.map_Key_Val.erase(Set_map.map_Key_Val.find(key));
+
+				Base::kol_of_elem--;
+
 			}
 			else
 			{
 				throw std::bad_alloc();
 			}
-		}*/
+		}
 
 
 		using RefPair = std::pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>;
@@ -191,17 +196,18 @@ namespace container
 
 
 
-		/*RefPair valGet(const Tval& val)
+		RefPair valGet(const Tval& val)
 		{
 			if (checkVal(val) != 0) {
-				auto a = std::make_pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>(bimap_2x.map_Val_Key[val], bimap_2x.map_Val_Key.find(val)->first);
-				return a;
+				auto a = *find_val_iter(val);
+				return std::make_pair<std::reference_wrapper<const Tkey>, std::reference_wrapper<const Tval>>(a->first, a->second);
+				
 			}
 			else
 			{
 				throw std::bad_alloc();
 			}
-		}*/
+		}
 
 
 

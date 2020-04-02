@@ -1,3 +1,3 @@
 ﻿  Map.cpp
-C:\Users\Egory\source\repos\bimap_base_test\Bimap\Bimap\bimap_first.h(98): warning C4715: container::bimap_first<int,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::find_val_iter: значение возвращается не при всех путях выполнения
+C:\Users\Egory\source\repos\bimap_base_test\Bimap\Bimap\bimap_first.h(69): warning C4715: container::bimap_first<int,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::find_val_iter: значение возвращается не при всех путях выполнения
   Bimap.vcxproj -> C:\Users\Egory\source\repos\bimap_base_test\Bimap\Debug\Bimap.exe

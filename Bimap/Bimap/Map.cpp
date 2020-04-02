@@ -31,31 +31,28 @@ int main()
 
 
 
-        cout << b.isEmpty() << endl;
+        cout << b1.isEmpty() << endl;
         int k, p;
         string v;
 
 
-        b.emplace(1, "mom");
-        b.emplace(2, "dad");
-        b.emplace(3, "dog");
         while (true)
         {
             cin >> p;
             switch (p)
             {
-            case 1: { cin >> k >> v; b.insert(k, v); break; } //insert
+            case 1: { cin >> k >> v; b1.insert(k, v); break; } //insert
 
 
-            case 2: {cin >> k >> v;  b.emplace(std::move(k), std::move(v)); break; } //emplace
+            case 2: {cin >> k >> v;  b1.emplace(std::move(k), std::move(v)); break; } //emplace
+                  
+            case 3: {cin >> k; auto a = b1.keyGet(k);  cout << "{ " << a.first << " ; " << a.second.get() << " }" ; break; }
 
-            case 3: {cin >> k; auto a = b.keyGet(k);  cout << "{ " << a.first << " ; " << a.second.get() << " }" ; break; }
+            case 4: {cin >> v; auto a = b1.valGet(v);  cout << "{ " << a.first << " ; "  << a.second.get() << " }";  break; }
 
-            case 4: {cin >> v; auto a = b.valGet(v);  cout << "{ " << a.first << " ; "  << a.second.get() << " }";  break; }
+            case 5: {cin >> k; b1.keyErase(k); break; }
 
-            case 5: {cin >> k; b.keyErase(k); break; }
-
-            case 6: {cin >> v; b.valErase(v); break; }
+            case 6: {cin >> v; b1.valErase(v); break; }
 
             default: break;
             }
@@ -64,7 +61,7 @@ int main()
 
 
 
-            cout << "size = " << b.size() << endl;
+            cout << "size = " << b1.size() << endl;
 
         }
 

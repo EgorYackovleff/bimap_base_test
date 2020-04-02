@@ -19,7 +19,7 @@ namespace container
 		std::map <Tkey, Tval> map_Key_Val;
 
 		std::set<typename std::map<Tkey, Tval>::const_iterator, cmp_less<Tkey, Tval>> set_bimap;
-
+		
 		//std::set < std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<int const, std::string>>>>> set_bimap;
 		
 		set_map() {}
@@ -36,6 +36,37 @@ namespace container
 		
 
 		using Base = bimap<Tkey, Tval>;
+
+		typename std::set<typename std::map<Tkey, Tval>::const_iterator, cmp_less<Tkey, Tval>>::const_iterator find_val_iter(const Tval& val) const
+		{
+			if (!isEmpty()) {
+				auto it_ = Set_map.set_bimap.begin();
+				bool flag = false;
+				int left = 0; int right = size() - 1;
+				int centr; int int_iter = 0;
+				while ((left <= right) && (flag != true))
+				{
+					centr = (left + right) / 2;
+
+
+					for (int_iter; int_iter < centr; int_iter++) it_++;
+					for (int_iter; int_iter > centr; int_iter--) it_--;
+
+					// Set_map.set_bimap.begin() + 1;
+					auto val__in_iter = std::pair<Tkey, Tval>(**it_).second;
+					if (val == val__in_iter) flag = true;
+					else
+					{
+						if (val__in_iter > val) right = centr - 1;
+						else left = centr + 1;
+
+					}
+				}
+				if (flag) return it_;
+				else return Set_map.set_bimap.end();
+
+			}
+		}
 
 
 		//возвращаем количество элементов
@@ -63,19 +94,32 @@ namespace container
 			return Set_map.map_Key_Val.count(key);
 		}
 
+
 		bool checkVal(const Tval& val) const
 		{
-			/*auto a = Set_map.set_bimap.find()
-			auto b = Set_map.set_bimap.end();*/
-
-			
-			return 1;
-
+			////if (!isEmpty()) {
+			////	//auto it_ = Set_map.set_bimap.begin();
+			////	///*auto a = *it_;
+			////	//auto b = *a;
+			////	//auto c = **it_;*/
+			////	//
+			////	//for ( it_ ; it_ != Set_map.set_bimap.end() ; it_++)
+			////	//{
+			////	//	if (val == std::pair<Tkey, Tval>(**it_).second) return true;+		std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<int const ,std::string>>>>>>>
+			////	//}// if (val == std::pair<Tkey, Tval>(**it_).second) return true;+		std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<int const ,std::string>>>>>>>
+			////}
+			////auto a = find_val_iter(val);
+			//auto a = find_val_iter(val);
+			//auto b = Set_map.set_bimap.end();
+			if (!isEmpty()) return find_val_iter(val) != Set_map.set_bimap.end();
+			return false;
+		
 		}
 
 
 		bool insert(const Tkey& key, const Tval& val)
 		{
+			
 			if (checkKey(key) == 0 && checkVal(val) == 0) {
 				Set_map.map_Key_Val.insert(std::pair<Tkey, Tval>(key, val));
 				Set_map.set_bimap.insert(Set_map.map_Key_Val.find(key));

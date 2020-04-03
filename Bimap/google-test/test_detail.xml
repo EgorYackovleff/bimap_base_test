@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="14" failures="0" disabled="0" errors="0" timestamp="2020-04-03T21:52:49" time="7888.99" name="AllTests">
+  <testsuite name="Bimap" tests="14" failures="0" disabled="0" errors="0" time="7888.99">
+    <testcase name="add_values_2xMapBomap" status="run" time="0.6" classname="Bimap" />
+    <testcase name="add_values_SetMapBimap" status="run" time="214.93" classname="Bimap" />
+    <testcase name="add_and_erase_by_key_2xMapBomap" status="run" time="21.718" classname="Bimap" />
+    <testcase name="add_and_erase_by_key_SetMapBimap" status="run" time="1508.02" classname="Bimap" />
+    <testcase name="add_and_erase_by_value_2xMapBomap" status="run" time="1.049" classname="Bimap" />
+    <testcase name="add_and_erase_by_value_SetMapBimap" status="run" time="1205.43" classname="Bimap" />
+    <testcase name="check_key_unique_2xMapBomap" status="run" time="0.836" classname="Bimap" />
+    <testcase name="check_key_unique_SetMapBimap" status="run" time="319.811" classname="Bimap" />
+    <testcase name="check_val_unique_2xMapBomap" status="run" time="0.922" classname="Bimap" />
+    <testcase name="check_val_unique_SetMapBimap" status="run" time="977.386" classname="Bimap" />
+    <testcase name="compare_ret_data_by_key_2xMapBomap" status="run" time="1.151" classname="Bimap" />
+    <testcase name="compare_ret_data_by_key_SetMapBimap" status="run" time="350.049" classname="Bimap" />
+    <testcase name="compare_ret_data_by_val_2xMapBomap" status="run" time="0.923" classname="Bimap" />
+    <testcase name="compare_ret_data_by_val_SetMapBimap" status="run" time="1611.8" classname="Bimap" />
+  </testsuite>
+</testsuites>

@@ -20,12 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bimap.h" />
+    <ClInclude Include="bimap_.h" />
     <ClInclude Include="bimap_first.h" />
     <ClInclude Include="bimap_second.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Map.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">

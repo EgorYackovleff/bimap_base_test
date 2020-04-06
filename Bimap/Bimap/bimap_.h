@@ -9,9 +9,9 @@
 
 #include <stdexcept>
 
+
 namespace container {
 
-  
 
     template<typename Tkey, typename Tval>
     class bimap_ final
@@ -22,7 +22,7 @@ namespace container {
 
         struct LocalLess final
         {
-            const bool operator() (const Setpair& i1, const Setpair& i2) const
+            bool operator() (const Setpair& i1, const Setpair& i2) const
             {
                 return (i1.first.get() < i2.first.get());
             }
@@ -53,13 +53,13 @@ namespace container {
         bool checkKey(const Tkey& key) const { return map_.count(key); }
         bool checkVal(const Tval& val) const
         {
-            Setpair p(std::cref(val), nullptr);
+            Setpair p(std::cref(val), typename Map::const_iterator());
             return set_.count(p);
         }
 
         bool insert(const Tkey& key, const Tval& val)
         {
-            const auto it = map_.insert(std::pair{ key, val });
+            const auto it = map_.insert(std::pair<Tkey, Tval>(key, val));
             if (it.second) {
                 if (addToSet(it.first)) {
                     return true;
@@ -95,7 +95,7 @@ namespace container {
 
         void valErase(const Tval& val)
         {
-            Setpair p(std::cref(val), nullptr);
+            Setpair p(std::cref(val), typename Map::const_iterator());
             const auto it = set_.find(p);
             if (it != set_.cend()) {
                 typename Map::const_iterator map_it = it->second;
@@ -116,7 +116,7 @@ namespace container {
 
         RetPair valGet(const Tval& val) const
         {
-            Setpair p(std::cref(val), nullptr);
+            Setpair p(std::cref(val), typename Map::const_iterator());
             const auto it = set_.find(p);
             if (it != set_.cend()) {
                 typename Map::const_iterator map_it = it->second;
